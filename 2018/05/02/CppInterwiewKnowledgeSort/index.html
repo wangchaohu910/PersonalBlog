@@ -109,24 +109,25 @@
 
 
 
-  <meta name="description" content="Ordinary but not simple">
-<meta name="keywords" content="chwang, minideep">
-<meta property="og:type" content="website">
-<meta property="og:title" content="chwang&#39;s notes">
-<meta property="og:url" content="http://notes.minideep.com/index.html">
+  <meta name="description" content="下面文章的内容是,基于自身知识体系,针对某些点理解不深入,理解不全的地方做整理。也便于以后的回顾和参考。 一.变量函数相关1.临时变量  函数返回值产生临时变量 类型转换时的中间变量 临时变量引用来实现多态▪参考资料  2.哪些类型的对象不可以作为union的成员？为什么有这种限制？C++当然支持在union中包含类成员，但是是有限制的：union中包含的类成员其构造函数、拷贝构造函数和析构函数必">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++相关知识梳理(面试)">
+<meta property="og:url" content="http://notes.minideep.com/2018/05/02/CppInterwiewKnowledgeSort/index.html">
 <meta property="og:site_name" content="chwang&#39;s notes">
-<meta property="og:description" content="Ordinary but not simple">
+<meta property="og:description" content="下面文章的内容是,基于自身知识体系,针对某些点理解不深入,理解不全的地方做整理。也便于以后的回顾和参考。 一.变量函数相关1.临时变量  函数返回值产生临时变量 类型转换时的中间变量 临时变量引用来实现多态▪参考资料  2.哪些类型的对象不可以作为union的成员？为什么有这种限制？C++当然支持在union中包含类成员，但是是有限制的：union中包含的类成员其构造函数、拷贝构造函数和析构函数必">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-13T03:23:33.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chwang&#39;s notes">
-<meta name="twitter:description" content="Ordinary but not simple">
+<meta name="twitter:title" content="C++相关知识梳理(面试)">
+<meta name="twitter:description" content="下面文章的内容是,基于自身知识体系,针对某些点理解不深入,理解不全的地方做整理。也便于以后的回顾和参考。 一.变量函数相关1.临时变量  函数返回值产生临时变量 类型转换时的中间变量 临时变量引用来实现多态▪参考资料  2.哪些类型的对象不可以作为union的成员？为什么有这种限制？C++当然支持在union中包含类成员，但是是有限制的：union中包含的类成员其构造函数、拷贝构造函数和析构函数必">
 
 
 
 
 
 
-  <link rel="canonical" href="http://notes.minideep.com/"/>
+  <link rel="canonical" href="http://notes.minideep.com/2018/05/02/CppInterwiewKnowledgeSort/"/>
 
 
 
@@ -136,7 +137,7 @@
   };
 </script>
 
-  <title>chwang's notes</title>
+  <title>C++相关知识梳理(面试) | chwang's notes</title>
   
 
 
@@ -183,8 +184,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,7 +224,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
   </li>
@@ -331,203 +331,18 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://notes.minideep.com/2018/05/05/CppDataBaseKnowledgeSort/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chwang's notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/05/CppDataBaseKnowledgeSort/" itemprop="url">
-                  数据库相关知识梳理(面试)
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-05-05 09:16:00" itemprop="dateCreated datePublished" datetime="2018-05-05T09:16:00+08:00">2018-05-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-05-13 09:21:01" itemprop="dateModified" datetime="2018-05-13T09:21:01+08:00">2018-05-13</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/MySql-NoSql/" itemprop="url" rel="index"><span itemprop="name">MySql,NoSql</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+  <div id="posts" class="posts-expand">
     
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li><p>ACID<br>原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）和持久性（Durability）</p>
-</li>
-<li><p>CAP<br>一致性（C:Consistency）、可用性（A:Availability）和分区容错性（P:Partition tolerance）</p>
-</li>
-<li><p>BASE<br>Basically Available(基本可用）、Soft state(软状态）和Eventually consistent(最终一致性）</p>
-</li>
-<li><p>隔离级别</p>
-</li>
-</ul>
-<p><a href="http://www.cnblogs.com/linbingdong/p/6178488.html" target="_blank" rel="noopener">参考资料</a></p>
-<h2 id="MySql相关"><a href="#MySql相关" class="headerlink" title="MySql相关"></a>MySql相关</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
   
 
   
   
   
 
+  
+    <div class="reading-progress-bar"></div>
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -552,11 +367,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/02/CppInterwiewKnowledgeSort/" itemprop="url">
-                  C++相关知识梳理(面试)
-                </a>
+          <h2 class="post-title" itemprop="name headline">C++相关知识梳理(面试)
               
             
           </h2>
@@ -656,9 +467,7 @@
       
 
       
-        
-          
-            <p>下面文章的内容是,基于自身知识体系,针对某些点理解不深入,理解不全的地方做整理。<br>也便于以后的回顾和参考。</p>
+        <p>下面文章的内容是,基于自身知识体系,针对某些点理解不深入,理解不全的地方做整理。<br>也便于以后的回顾和参考。</p>
 <h2 id="一-变量函数相关"><a href="#一-变量函数相关" class="headerlink" title="一.变量函数相关"></a>一.变量函数相关</h2><p>1.临时变量</p>
 <ul>
 <li>函数返回值产生临时变量</li>
@@ -814,8 +623,6 @@ f(p);
 <li><a href="https://segmentfault.com/a/1190000003745529" target="_blank" rel="noopener">C++常见面试问题总结</a></li>
 </ul>
 
-          
-        
       
     </div>
 
@@ -833,198 +640,40 @@ f(p);
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://notes.minideep.com/2018/05/01/CppKnowledgeHierarchySort/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chwang's notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/01/CppKnowledgeHierarchySort/" itemprop="url">
-                  C++工程师知识体系梳理(面试)
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-05-01 17:26:00" itemprop="dateCreated datePublished" datetime="2018-05-01T17:26:00+08:00">2018-05-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-05-13 09:16:22" itemprop="dateModified" datetime="2018-05-13T09:16:22+08:00">2018-05-13</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="C-相关知识整理"><a href="#C-相关知识整理" class="headerlink" title="C++相关知识整理:"></a>C++相关知识整理:</h2><p><a href="http://notes.minideep.com/2018/05/01/CppInterwiewKnowledgeSort/">传送门</a></p>
-<h2 id="算法相关"><a href="#算法相关" class="headerlink" title="算法相关"></a>算法相关</h2><p>未完待续</p>
-<h2 id="数据库相关"><a href="#数据库相关" class="headerlink" title="数据库相关"></a>数据库相关</h2><p>未完待续</p>
-<h2 id="设计模式相关"><a href="#设计模式相关" class="headerlink" title="设计模式相关"></a>设计模式相关</h2><p>未完待续</p>
-<h2 id="分布式相关"><a href="#分布式相关" class="headerlink" title="分布式相关"></a>分布式相关</h2><p>未完待续</p>
-<h2 id="linux相关"><a href="#linux相关" class="headerlink" title="linux相关"></a>linux相关</h2><p>未完待续</p>
-<h2 id="Windows相关"><a href="#Windows相关" class="headerlink" title="Windows相关"></a>Windows相关</h2><p>未完待续</p>
-<h2 id="Shell脚本相关"><a href="#Shell脚本相关" class="headerlink" title="Shell脚本相关"></a>Shell脚本相关</h2><p>未完待续</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/01/CppKnowledgeHierarchySort/" rel="next" title="C++工程师知识体系梳理(面试)">
+                <i class="fa fa-chevron-left"></i> C++工程师知识体系梳理(面试)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/05/CppDataBaseKnowledgeSort/" rel="prev" title="数据库相关知识梳理(面试)">
+                数据库相关知识梳理(面试) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -1034,14 +683,19 @@ f(p);
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1062,8 +716,17 @@ f(p);
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1158,6 +821,22 @@ f(p);
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-变量函数相关"><span class="nav-number">1.</span> <span class="nav-text">一.变量函数相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-类相关"><span class="nav-number">2.</span> <span class="nav-text">二.类相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-内存相关"><span class="nav-number">3.</span> <span class="nav-text">三.内存相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-STL相关"><span class="nav-number">4.</span> <span class="nav-text">四.STL相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector相关"><span class="nav-number">4.1.</span> <span class="nav-text">Vector相关</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五-性能相关"><span class="nav-number">5.</span> <span class="nav-text">五.性能相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六-Boost相关"><span class="nav-number">6.</span> <span class="nav-text">六.Boost相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七-C-11相关"><span class="nav-number">7.</span> <span class="nav-text">七.C++11相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八-其他人整理"><span class="nav-number">8.</span> <span class="nav-text">八.其他人整理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1310,6 +989,10 @@ f(p);
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
 
   
 
@@ -1709,7 +1392,7 @@ f(p);
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script type="text/javascript">
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 
