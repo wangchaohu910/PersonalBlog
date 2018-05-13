@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-05-13 09:21:01" itemprop="dateModified" datetime="2018-05-13T09:21:01+08:00">2018-05-13</time>
+                <time title="修改时间：2018-05-13 16:46:13" itemprop="dateModified" datetime="2018-05-13T16:46:13+08:00">2018-05-13</time>
               
             
           </span>
@@ -476,13 +476,31 @@
 </li>
 <li><p>CAP<br>一致性（C:Consistency）、可用性（A:Availability）和分区容错性（P:Partition tolerance）</p>
 </li>
-<li><p>BASE<br>Basically Available(基本可用）、Soft state(软状态）和Eventually consistent(最终一致性）</p>
+<li><p>BASE<br>Basically Available(基本可用）、Soft state(软状态）和Eventually consistent(最终一致性）<br><a href="http://www.cnblogs.com/linbingdong/p/6178488.html" target="_blank" rel="noopener">参考资料</a></p>
 </li>
-<li><p>隔离级别</p>
+<li><p>事务的隔离级别</p>
 </li>
 </ul>
-<p><a href="http://www.cnblogs.com/linbingdong/p/6178488.html" target="_blank" rel="noopener">参考资料</a></p>
-<h2 id="MySql相关"><a href="#MySql相关" class="headerlink" title="MySql相关"></a>MySql相关</h2>
+<ul>
+<li><p>未提交读(Read uncommitted)→问题:脏读<br>一个事务可以读取另一个未提交的数据，容易出现脏读的情况。</p>
+</li>
+<li><p>读提交(Read committed)→问题:不可重复读<br>一个事务等另外一个事务提交之后才可以读取数据，但会出现不可重复读的情况（多次读取的数据不一致），读取过程中出现UPDATE操作，会多。（大多数数据库默认级别是RC，比如SQL Server，Oracle），读取的时候不可以修改。</p>
+</li>
+<li><p>可重复读(Repeatable read)→问题:幻读<br>同一个事务里确保每次读取的时候，获得的是同样的数据，但不保障原始数据被其他事务更新（幻读），Mysql InnoDB 就是这个级别。</p>
+</li>
+<li><p>序列化(Serializable)<br>所有事物串行处理（牺牲了效率）<br><a href="https://blog.csdn.net/qq_33290787/article/details/51924963" target="_blank" rel="noopener">参考资料1</a><br><a href="https://www.cnblogs.com/z-sm/p/7245981.html" target="_blank" rel="noopener">参考资料2</a></p>
+</li>
+</ul>
+<h2 id="MySql相关"><a href="#MySql相关" class="headerlink" title="MySql相关"></a>MySql相关</h2><p>1.存储引擎</p>
+<p>2.并发控制</p>
+<ul>
+<li>MVCC实现机制(Multi-Version Concurrency Control):MVCC是一种多版本并发控制机制。</li>
+</ul>
+<ul>
+<li>基于锁的并发控制，Lock-Based Concurrency Control</li>
+</ul>
+<p>3.</p>
+
           
         
       
@@ -598,7 +616,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-05-13 11:23:33" itemprop="dateModified" datetime="2018-05-13T11:23:33+08:00">2018-05-13</time>
+                <time title="修改时间：2018-05-13 15:55:03" itemprop="dateModified" datetime="2018-05-13T15:55:03+08:00">2018-05-13</time>
               
             
           </span>
@@ -694,6 +712,13 @@
 <li>RAII（Resource Acquisition Is Initialization）是一种利用对象生命周期来控制程序资源（如内存、文件句柄、网络连接、互斥量等等）的简单技术。<br>RAII的一般做法是这样的：在对象构造时获取资源，接着控制对资源的访问使之在对象的生命周期内始终保持有效，最后在对象析构的时候释放资源。借此，我们实际上把管理一份资源的责任托管给了一个对象。这种做法有两大好处：<br>不需要显式地释放资源。<br>采用这种方式，对象所需的资源在其生命期内始终保持有效。<br><a href="http://lib.csdn.net/article/cplusplus/21896" target="_blank" rel="noopener">参考资料</a></li>
 </ul>
 <p>10.auto_ptr能作为vector的元素吗？为什么？<br>不可以。当复制一个auto_ptr时，它所指向的对象的所有权被交到复制的auto_ptr上面，而它自身将被设置为null。复制一个auto_ptr意味着改变它的值</p>
+<p>11.extern “C” 的作用<br>-在c++文件中可以直接利用extern使用c文件中的代码<br>-函数名称修饰规则,C++支持函数重载<br><a href="https://blog.csdn.net/xhfight/article/details/51762620" target="_blank" rel="noopener">参考资料</a><br><a href="http://www.importnew.com/24082.html" target="_blank" rel="noopener">Java参考资料</a></p>
+<p>12.volatile用法</p>
+<ul>
+<li>中断服务程序中修改的供其它程序检测的变量需要加volatile； </li>
+<li>多任务环境下各任务间共享的标志应该加volatile； </li>
+<li>存储器映射的硬件寄存器通常也要加volatile说明，因为每次对它的读写都可能由不同意义<br><a href="https://www.cnblogs.com/yc_sunniwell/archive/2010/07/14/1777432.html" target="_blank" rel="noopener">参考资料</a></li>
+</ul>
 <h2 id="二-类相关"><a href="#二-类相关" class="headerlink" title="二.类相关"></a>二.类相关</h2><p>1.c++虚函数机制</p>
 <ul>
 <li>虚函数指针实现</li>
@@ -805,6 +830,7 @@ f(p);
 <li>使用reserver避免不必要的内存分配(for vector):内存重新分配, 释放旧空间, 元素复制</li>
 <li>在map的insert()和operator［］选择:<br>理由:插入时，insert效率高；因为operator会先探查是否存在这个元素，如果不存在就构造一个临时的，然后才涉及到赋值，多了一个临时对象的构造；更新时，［］效率更高，insert会创造一个对象，然后覆盖一个原有对象；而［］是在原有的对象上直接赋值操作</li>
 <li>对于迭代器和其他模板对象使用前缀形式 (++i) 的自增, 自减运算符.<br>理由:前置自增 (++i) 通常要比后置自增 (i++) 效率更高。++a表示取a的地址，增加它的内容，然后把值放在寄存器中；<br>a++表示取a的地址，把它的值装入寄存器，然后增加内存中的a的值；<br>在非内置类型的时候，尽量使用前置++，因为效率高（后置自增，效率低）<br>▪<a href="http://www.cnblogs.com/me115/p/4596543.html" target="_blank" rel="noopener">参考资料</a></li>
+<li>变量延时定义:避免构造函数执行耗费<br>▪<a href="https://blog.csdn.net/D_Guco/article/details/75729259" target="_blank" rel="noopener">参考资料</a></li>
 </ul>
 <h2 id="六-Boost相关"><a href="#六-Boost相关" class="headerlink" title="六.Boost相关"></a>六.Boost相关</h2><ul>
 <li>boost 的 bind 和 function</li>

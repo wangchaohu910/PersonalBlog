@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="chwang&#39;s notes">
 <meta property="og:description" content="下面文章的内容是,基于自身知识体系,针对某些点理解不深入,理解不全的地方做整理。也便于以后的回顾和参考。 一.变量函数相关1.临时变量  函数返回值产生临时变量 类型转换时的中间变量 临时变量引用来实现多态▪参考资料  2.哪些类型的对象不可以作为union的成员？为什么有这种限制？C++当然支持在union中包含类成员，但是是有限制的：union中包含的类成员其构造函数、拷贝构造函数和析构函数必">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-13T03:23:33.145Z">
+<meta property="og:updated_time" content="2018-05-13T07:55:03.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++相关知识梳理(面试)">
 <meta name="twitter:description" content="下面文章的内容是,基于自身知识体系,针对某些点理解不深入,理解不全的地方做整理。也便于以后的回顾和参考。 一.变量函数相关1.临时变量  函数返回值产生临时变量 类型转换时的中间变量 临时变量引用来实现多态▪参考资料  2.哪些类型的对象不可以作为union的成员？为什么有这种限制？C++当然支持在union中包含类成员，但是是有限制的：union中包含的类成员其构造函数、拷贝构造函数和析构函数必">
@@ -409,7 +409,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-05-13 11:23:33" itemprop="dateModified" datetime="2018-05-13T11:23:33+08:00">2018-05-13</time>
+                <time title="修改时间：2018-05-13 15:55:03" itemprop="dateModified" datetime="2018-05-13T15:55:03+08:00">2018-05-13</time>
               
             
           </span>
@@ -503,6 +503,13 @@
 <li>RAII（Resource Acquisition Is Initialization）是一种利用对象生命周期来控制程序资源（如内存、文件句柄、网络连接、互斥量等等）的简单技术。<br>RAII的一般做法是这样的：在对象构造时获取资源，接着控制对资源的访问使之在对象的生命周期内始终保持有效，最后在对象析构的时候释放资源。借此，我们实际上把管理一份资源的责任托管给了一个对象。这种做法有两大好处：<br>不需要显式地释放资源。<br>采用这种方式，对象所需的资源在其生命期内始终保持有效。<br><a href="http://lib.csdn.net/article/cplusplus/21896" target="_blank" rel="noopener">参考资料</a></li>
 </ul>
 <p>10.auto_ptr能作为vector的元素吗？为什么？<br>不可以。当复制一个auto_ptr时，它所指向的对象的所有权被交到复制的auto_ptr上面，而它自身将被设置为null。复制一个auto_ptr意味着改变它的值</p>
+<p>11.extern “C” 的作用<br>-在c++文件中可以直接利用extern使用c文件中的代码<br>-函数名称修饰规则,C++支持函数重载<br><a href="https://blog.csdn.net/xhfight/article/details/51762620" target="_blank" rel="noopener">参考资料</a><br><a href="http://www.importnew.com/24082.html" target="_blank" rel="noopener">Java参考资料</a></p>
+<p>12.volatile用法</p>
+<ul>
+<li>中断服务程序中修改的供其它程序检测的变量需要加volatile； </li>
+<li>多任务环境下各任务间共享的标志应该加volatile； </li>
+<li>存储器映射的硬件寄存器通常也要加volatile说明，因为每次对它的读写都可能由不同意义<br><a href="https://www.cnblogs.com/yc_sunniwell/archive/2010/07/14/1777432.html" target="_blank" rel="noopener">参考资料</a></li>
+</ul>
 <h2 id="二-类相关"><a href="#二-类相关" class="headerlink" title="二.类相关"></a>二.类相关</h2><p>1.c++虚函数机制</p>
 <ul>
 <li>虚函数指针实现</li>
@@ -614,6 +621,7 @@ f(p);
 <li>使用reserver避免不必要的内存分配(for vector):内存重新分配, 释放旧空间, 元素复制</li>
 <li>在map的insert()和operator［］选择:<br>理由:插入时，insert效率高；因为operator会先探查是否存在这个元素，如果不存在就构造一个临时的，然后才涉及到赋值，多了一个临时对象的构造；更新时，［］效率更高，insert会创造一个对象，然后覆盖一个原有对象；而［］是在原有的对象上直接赋值操作</li>
 <li>对于迭代器和其他模板对象使用前缀形式 (++i) 的自增, 自减运算符.<br>理由:前置自增 (++i) 通常要比后置自增 (i++) 效率更高。++a表示取a的地址，增加它的内容，然后把值放在寄存器中；<br>a++表示取a的地址，把它的值装入寄存器，然后增加内存中的a的值；<br>在非内置类型的时候，尽量使用前置++，因为效率高（后置自增，效率低）<br>▪<a href="http://www.cnblogs.com/me115/p/4596543.html" target="_blank" rel="noopener">参考资料</a></li>
+<li>变量延时定义:避免构造函数执行耗费<br>▪<a href="https://blog.csdn.net/D_Guco/article/details/75729259" target="_blank" rel="noopener">参考资料</a></li>
 </ul>
 <h2 id="六-Boost相关"><a href="#六-Boost相关" class="headerlink" title="六.Boost相关"></a>六.Boost相关</h2><ul>
 <li>boost 的 bind 和 function</li>
