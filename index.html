@@ -1110,7 +1110,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-05-19 21:29:32" itemprop="dateModified" datetime="2018-05-19T21:29:32+08:00">2018-05-19</time>
+                <time title="修改时间：2018-05-20 17:30:23" itemprop="dateModified" datetime="2018-05-20T17:30:23+08:00">2018-05-20</time>
               
             
           </span>
@@ -1208,8 +1208,17 @@
 <li><p>Paxos算法(ZooKeeper)<br>Paxos算法是基于消息传递且具有高度容错特性的一致性算法，是目前公认的解决分布式一致性问题最有效的算法之一<br>缺点：1.难以理解 2.工程实现更难<br><a href="https://www.cnblogs.com/linbingdong/p/6253479.html" target="_blank" rel="noopener">参考资料</a></p>
 </li>
 </ul>
-<h2 id="MySql相关"><a href="#MySql相关" class="headerlink" title="MySql相关"></a>MySql相关</h2><p>1.存储引擎</p>
-<p>2.并发控制</p>
+<h2 id="MySql相关"><a href="#MySql相关" class="headerlink" title="MySql相关"></a>MySql相关</h2><p><strong>▼存储引擎(innodb)</strong><br><strong>存储</strong><br>逻辑存储：<br>表空间（tablespace）是存储引擎中最高的存储逻辑单位，在表空间的下面又包括段（segment）、区（extent）、页（page)<br>-表的定义(.frm)/数据索引(.ibd)</p>
+<p>物理存储：<br>-按行存储(存储格式:Compact, Redundant, Compressed, Dynamic)<br>-数据页结构:链表(为了保证插入和删除的效率)<br><a href="https://www.cnblogs.com/wade-luffy/p/6289183.html" target="_blank" rel="noopener">存储格式区别</a></p>
+<p><strong>索引(B+ 树索引)</strong><br>-聚集索引（clustered index）:存放着一条行记录的全部信息，所有正常的表应该有且仅有一个聚集索引（绝大多数情况下都是主键）<br>-辅助索引（secondary index）:只包含索引列和一个用于查找对应行记录的『书签』,在 InnoDB 中这个书签就是当前记录的主键。<br>辅助索引查找一条表记录的过程：通过辅助索引查找到对应的主键，最后在聚集索引中使用主键获取对应的行记录，这也是通常情况下行记录的查找方式。</p>
+<p>稠密索引和稀疏索引都属于聚集索引<br>1.稠密索引<br>定义：它是由键值和指针(指向记录本身地址)组成的一系列存储块，该存储块的键值与文件的逻辑顺序一致。<br>特性：每个存储块的每一个键对应的指针都指向每个数据块每一条记录，当要查找指定键K时，采用二分查找即可找到键K对应的记录，复杂度为log2n。<br>2.稀疏索引<br>定义：它是由键值和指针(指向记录本身地址)组成的一系列存储块，该存储块的键值与文件的逻辑顺序单调性一致。<br>特性：每个存储块的每一个键对应的指针都指向每个数据块的第一条记录，当要查找指定建K时，先采用二分查找找到&lt;=K的键S，如果S=K，则命中记录，如果S&lt;K，则顺序查找=K的键，复杂度大于log2n，小于n。</p>
+<p>比较：<br>a.稀疏索引占用的索引存储空间比较小，但是查找时间较长；<br>b.稠密索引查找时间较短，索引存储空间较大。</p>
+<p><a href="https://draveness.me/mysql-innodb" target="_blank" rel="noopener">参考资料</a></p>
+<p><strong>锁(并发控制机制)</strong><br>我们都知道锁的种类一般分为乐观锁和悲观锁两种，InnoDB 存储引擎中使用的就是悲观锁，而按照锁的粒度划分，也可以分成行锁和表锁<br>乐观锁(冲突频率和重试成本)是一种思想，它其实并不是一种真正的『锁』，它会先尝试对资源进行修改，在写回时判断资源是否进行了改变，如果没有发生改变就会写回，否则就会进行重试，在整个的执行过程中其实都没有对数据库进行加锁；</p>
+<p>悲观锁就是一种真正的锁了，它会在获取资源前对资源进行加锁，确保同一时刻只有有限的线程能够访问该资源，其他想要尝试获取资源的操作都会进入等待状态，直到该线程完成了对资源的操作并且释放了锁后，其他线程才能重新操作资源；</p>
+<p>选择并发控制机制:需要综合考虑上面的四个方面（冲突频率、重试成本、响应速度和并发量）进行选择</p>
+<p><strong>▼存储引擎(MyISAM)</strong></p>
+<p><strong>▼并发控制(innodb)</strong></p>
 <ul>
 <li>MVCC实现机制(Multi-Version Concurrency Control):MVCC是一种多版本并发控制机制。<br>innodb MVCC主要是为Repeatable-Read事务隔离级别做的。</li>
 </ul>
