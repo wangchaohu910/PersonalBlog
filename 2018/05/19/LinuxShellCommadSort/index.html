@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="chwang&#39;s notes">
 <meta property="og:description" content="free命令原理▼Buffer/Cache区别  •常规意义cache:高速缓存,是位于CPU与主内存间的一种容量较小但速度很高的存储器•常规意义buffer:缓冲区,一个用于存储速度不同步的设备或优先级不同的设备之间传输数据的区域•free命令buffer:块设备的读写缓冲区,它只记录文件系统的元数据（metadata）,用来缓存磁盘数据(物理层:物理磁角度)•free命令cache:作为pag">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-19T10:06:43.219Z">
+<meta property="og:updated_time" content="2018-05-19T14:02:42.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell命令实现原理理解">
 <meta name="twitter:description" content="free命令原理▼Buffer/Cache区别  •常规意义cache:高速缓存,是位于CPU与主内存间的一种容量较小但速度很高的存储器•常规意义buffer:缓冲区,一个用于存储速度不同步的设备或优先级不同的设备之间传输数据的区域•free命令buffer:块设备的读写缓冲区,它只记录文件系统的元数据（metadata）,用来缓存磁盘数据(物理层:物理磁角度)•free命令cache:作为pag">
@@ -242,7 +242,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">4</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">5</span></a>
   </li>
         
         
@@ -250,7 +250,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">6</span></a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">7</span></a>
   </li>
         
         
@@ -258,7 +258,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">6</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">7</span></a>
   </li>
         
         
@@ -392,7 +392,7 @@
                 
               
 
-              <time title="创建时间：2018-05-19 16:10:00 / 修改时间：18:06:43" itemprop="dateCreated datePublished" datetime="2018-05-19T16:10:00+08:00">2018-05-19</time>
+              <time title="创建时间：2018-05-19 16:10:00 / 修改时间：22:02:42" itemprop="dateCreated datePublished" datetime="2018-05-19T16:10:00+08:00">2018-05-19</time>
             
 
             
@@ -463,7 +463,7 @@
 <h2 id="ldd-ldconfig命令原理"><a href="#ldd-ldconfig命令原理" class="headerlink" title="ldd/ldconfig命令原理"></a>ldd/ldconfig命令原理</h2><p><strong>▼ldd原理</strong><br>&emsp;&emsp;ldd不是个可执行程式，而只是个shell脚本；ldd显示可执行模块的dependency的工作原理，其实质是通过ld-linux.so（elf动态库的装载器）来实现的。ld-linux.so模块会先于executable模块程式工作，并获得控制权，因此当上述的那些环境变量被设置时，ld-linux.so选择了显示可执行模块的dependency。</p>
 <p><strong>▼ldconfig原理</strong><br>&emsp;&emsp;ldconfig是一个动态链接库管理命令，为了让动态链接库为系统所共享,还需运行动态链接库的管理命令–ldconfig。 ldconfig 命令的用途,主要是在默认搜寻目录(/lib和/usr/lib)以及动态库配置文件/etc/ld.so.conf内所列的目录下,搜索出可共享的动态 链接库(格式如前介绍,lib<em>.so</em>),进而创建出动态装入程序(ld.so)所需的连接和缓存文件.缓存文件默认为 /etc/ld.so.cache,此文件保存已排好序的动态链接库名字列表.</p>
 <p><a href="http://www.jb51.net/article/100233.htm" target="_blank" rel="noopener">参考资料</a></p>
-<h2 id="如何手动实现tail命令"><a href="#如何手动实现tail命令" class="headerlink" title="如何手动实现tail命令"></a>如何手动实现tail命令</h2><p><strong>▼思路</strong><br>1.调用Shell脚本<br>2.开辟n行的Buffer, 存取文件最后n行的数据，并输出,间隔一段时间检查文件大小是否有变化，有则输出新追加的内容</p>
+<h2 id="如何手动实现tail命令"><a href="#如何手动实现tail命令" class="headerlink" title="如何手动实现tail命令"></a>如何手动实现tail命令</h2><p><strong>▼思路</strong><br>1.调用Shell脚本<br>2.开辟n行的Buffer, 存取文件最后n行的数据，并输出,间隔一段时间检查文件大小是否有变化，有则输出新追加的内容。</p>
 <pre><code>FILE *fd=popen(&quot;tail -f -n +1 stat.log&quot;,&quot;r&quot;);
 </code></pre><p><a href="https://www.cnblogs.com/welkinwalker/archive/2011/06/23/2088403.html" target="_blank" rel="noopener">参考资料</a></p>
 <p><strong>▼system()和popen()区别</strong><br>&emsp;&emsp;1.system和popen都是执行了类似的运行流程，大致是fork-&gt;execl-&gt;return。但是我们看到system在执行期间调用进程会一直等待shell命令执行完成(waitpid等待子进程结束)才返回，但是popen无须等待shell命令执行完成就返回了。我们可以理解system为串行执行，在执行期间调用进程放弃了”控制权”，popen为并行执行。popen中的子进程没人给它”收尸”了啊？是的，如果你没有在调用popen后调用pclose那么这个子进程就可能变成”僵尸”。<br>&emsp;&emsp;2.system中对SIGCHLD、SIGINT、SIGQUIT都做了处理，但是在popen中没有对信号做任何的处理。<br>&emsp;&emsp;3.system就是执行shell命令最后返回是否执行成功，popen执行命令并且通过管道和shell命令进行通信<br>&emsp;&emsp;4.system函数是C89和C99中标准定义的，可以跨平台使用。而popen是Posix 标准函数，可能在某些平台无法使用。</p>
@@ -502,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/12/LinuxAPI_ftok_function/" rel="next" title="ftok函数理解和限制">
-                <i class="fa fa-chevron-left"></i> ftok函数理解和限制
+              <a href="/2018/05/12/LinuxAPIKnowledgeSort/" rel="next" title="Linux API深入原理理解">
+                <i class="fa fa-chevron-left"></i> Linux API深入原理理解
               </a>
             
           </div>
@@ -511,6 +511,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/20/DockerKnowledgeSort/" rel="prev" title="Docker相关知识点梳理">
+                Docker相关知识点梳理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -588,7 +592,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -613,7 +617,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -634,7 +640,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -242,7 +242,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">4</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">5</span></a>
   </li>
         
         
@@ -250,7 +250,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">6</span></a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">7</span></a>
   </li>
         
         
@@ -258,7 +258,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">6</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">7</span></a>
   </li>
         
         
@@ -348,6 +348,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://notes.minideep.com/2018/05/20/DockerKnowledgeSort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chwang's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/20/DockerKnowledgeSort/" itemprop="url">
+                  Docker相关知识点梳理
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-20 21:58:00 / 修改时间：11:02:21" itemprop="dateCreated datePublished" datetime="2018-05-20T21:58:00+08:00">2018-05-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Docker-核心技术与实现原理"><a href="#Docker-核心技术与实现原理" class="headerlink" title="Docker 核心技术与实现原理"></a>Docker 核心技术与实现原理</h2><p><strong>▼Namespaces</strong><br>命名空间 (namespaces) 是 Linux 为我们提供的用于分离进程树、网络接口、挂载点以及进程间通信等资源的方法。</p>
+<p><strong>▼网络</strong><br>Docker为我们提供了四种不同的网络模式，Host、Container、None 和 Bridge 模式。<br>网桥模式。在这种模式下，除了分配隔离的网络命名空间之外，Docker 还会为所有的容器设置 IP 地址。当 Docker 服务器在主机上启动之后会创建新的虚拟网桥 docker0，随后在该主机上启动的全部服务在默认情况下都与该网桥相连。<br>Docker通过Linux的命名空间实现了网络的隔离，又通过iptables进行数据包转发，让Docker容器能够优雅地为宿主机器或者其他容器提供服务。<br>整个网络部分的功能都是通过Docker拆分出来的libnetwork实现的，它提供了一个连接不同容器的实现，同时也能够为应用给出一个能够提供一致的编程接口和网络层抽象的容器网络模型。</p>
+<p><strong>▼挂载点</strong><br>如果一个容器需要启动，那么它一定需要提供一个根文件系统（rootfs），容器需要使用这个文件系统来创建一个新的进程，所有二进制的执行都必须在这个根文件系统中。<br>chroot:更改root目录,优点:</p>
+<blockquote>
+<p>1.增加了系统的安全性，限制了用户的权力<br>在经过chroot之后，在新根下将访问不到旧系统的根目录结构和文件，这样就增强了系统的安全性。这个一般是在登录 (login) 前使用 chroot，以此达到用户不能访问一些特定的文件<br>2.建立一个与原系统隔离的系统目录结构，方便用户的开发；<br>使用chroot后，系统读取的是新根下的目录和文件，这是一个与原系统根下文件不相关的目录结构。在这个新的环境中，可以用来测试软件的静态编译以及一些与系统不相关的独立开发。<br>3.切换系统的根目录位置，引导Linux系统启动以及急救系统等。<br>chroot 的作用就是切换系统的根位置，而这个作用最为明显的是在系统初始引导磁盘的处理过程中使用，从初始 RAM 磁盘 (initrd) 切换系统的根位置并执行真正的 init。另外，当系统出现一些问题时，我们也可以使用 chroot 来切换到一个临时的系统。</p>
+</blockquote>
+<p><strong>▼CGroups</strong></p>
+<blockquote>
+<p>Control Groups（简称 CGroups）就是能够隔离宿主机器上的物理资源，例如 CPU、内存、磁盘 I/O 和网络带宽。<br>CGroup 是将任意进程进行分组化管理的Linux内核功能。CGroup本身是提供将进程进行分组化管理的功能和接口的基础结构，I/O 或内存的分配控制等具体的资源管理功能是通过这个功能来实现的。这些具体的资源管理功能称为 CGroup 子系统或控制器。CGroup 子系统有控制内存的 Memory 控制器、控制进程调度的 CPU 控制器等。运行中的内核可以使用的 Cgroup 子系统由/proc/cgroup 来确认。<br>CGroup 提供了一个 CGroup 虚拟文件系统，作为进行分组管理和各子系统设置的用户接口。要使用 CGroup，必须挂载 CGroup 文件系统。这时通过挂载选项指定使用哪个子系统<br><a href="https://www.ibm.com/developerworks/cn/linux/1506_cgroup/index.html" target="_blank" rel="noopener">参考资料</a></p>
+</blockquote>
+<p><strong>▼UnionFS</strong><br>Docker 镜像其实本质就是一个压缩包</p>
+<p><strong>▼存储驱动</strong><br>容器和镜像的区别就在于，所有的镜像都是只读的，而每一个容器其实等于镜像加上一个可读写的层，也就是同一个镜像可以对应多个容器。</p>
+<p><strong>▼AUFS</strong><br>UnionFS 其实是一种为 Linux 操作系统设计的用于把多个文件系统『联合』到同一个挂载点的文件系统服务。而 AUFS 即 Advanced UnionFS 其实就是 UnionFS 的升级版，它能够提供更优秀的性能和效率。</p>
+<p><a href="https://draveness.me/docker" target="_blank" rel="noopener">参考资料</a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://notes.minideep.com/2018/05/19/LinuxShellCommadSort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -394,7 +565,7 @@
                 
               
 
-              <time title="创建时间：2018-05-19 16:10:00 / 修改时间：18:06:43" itemprop="dateCreated datePublished" datetime="2018-05-19T16:10:00+08:00">2018-05-19</time>
+              <time title="创建时间：2018-05-19 16:10:00 / 修改时间：22:02:42" itemprop="dateCreated datePublished" datetime="2018-05-19T16:10:00+08:00">2018-05-19</time>
             
 
             
@@ -467,7 +638,7 @@
 <h2 id="ldd-ldconfig命令原理"><a href="#ldd-ldconfig命令原理" class="headerlink" title="ldd/ldconfig命令原理"></a>ldd/ldconfig命令原理</h2><p><strong>▼ldd原理</strong><br>&emsp;&emsp;ldd不是个可执行程式，而只是个shell脚本；ldd显示可执行模块的dependency的工作原理，其实质是通过ld-linux.so（elf动态库的装载器）来实现的。ld-linux.so模块会先于executable模块程式工作，并获得控制权，因此当上述的那些环境变量被设置时，ld-linux.so选择了显示可执行模块的dependency。</p>
 <p><strong>▼ldconfig原理</strong><br>&emsp;&emsp;ldconfig是一个动态链接库管理命令，为了让动态链接库为系统所共享,还需运行动态链接库的管理命令–ldconfig。 ldconfig 命令的用途,主要是在默认搜寻目录(/lib和/usr/lib)以及动态库配置文件/etc/ld.so.conf内所列的目录下,搜索出可共享的动态 链接库(格式如前介绍,lib<em>.so</em>),进而创建出动态装入程序(ld.so)所需的连接和缓存文件.缓存文件默认为 /etc/ld.so.cache,此文件保存已排好序的动态链接库名字列表.</p>
 <p><a href="http://www.jb51.net/article/100233.htm" target="_blank" rel="noopener">参考资料</a></p>
-<h2 id="如何手动实现tail命令"><a href="#如何手动实现tail命令" class="headerlink" title="如何手动实现tail命令"></a>如何手动实现tail命令</h2><p><strong>▼思路</strong><br>1.调用Shell脚本<br>2.开辟n行的Buffer, 存取文件最后n行的数据，并输出,间隔一段时间检查文件大小是否有变化，有则输出新追加的内容</p>
+<h2 id="如何手动实现tail命令"><a href="#如何手动实现tail命令" class="headerlink" title="如何手动实现tail命令"></a>如何手动实现tail命令</h2><p><strong>▼思路</strong><br>1.调用Shell脚本<br>2.开辟n行的Buffer, 存取文件最后n行的数据，并输出,间隔一段时间检查文件大小是否有变化，有则输出新追加的内容。</p>
 <pre><code>FILE *fd=popen(&quot;tail -f -n +1 stat.log&quot;,&quot;r&quot;);
 </code></pre><p><a href="https://www.cnblogs.com/welkinwalker/archive/2011/06/23/2088403.html" target="_blank" rel="noopener">参考资料</a></p>
 <p><strong>▼system()和popen()区别</strong><br>&emsp;&emsp;1.system和popen都是执行了类似的运行流程，大致是fork-&gt;execl-&gt;return。但是我们看到system在执行期间调用进程会一直等待shell命令执行完成(waitpid等待子进程结束)才返回，但是popen无须等待shell命令执行完成就返回了。我们可以理解system为串行执行，在执行期间调用进程放弃了”控制权”，popen为并行执行。popen中的子进程没人给它”收尸”了啊？是的，如果你没有在调用popen后调用pclose那么这个子进程就可能变成”僵尸”。<br>&emsp;&emsp;2.system中对SIGCHLD、SIGINT、SIGQUIT都做了处理，但是在popen中没有对信号做任何的处理。<br>&emsp;&emsp;3.system就是执行shell命令最后返回是否执行成功，popen执行命令并且通过管道和shell命令进行通信<br>&emsp;&emsp;4.system函数是C89和C99中标准定义的，可以跨平台使用。而popen是Posix 标准函数，可能在某些平台无法使用。</p>
@@ -526,7 +697,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://notes.minideep.com/2018/05/12/LinuxAPI_ftok_function/">
+    <link itemprop="mainEntityOfPage" href="http://notes.minideep.com/2018/05/12/LinuxAPIKnowledgeSort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chwang">
@@ -545,8 +716,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/12/LinuxAPI_ftok_function/" itemprop="url">
-                  ftok函数理解和限制
+                <a class="post-title-link" href="/2018/05/12/LinuxAPIKnowledgeSort/" itemprop="url">
+                  Linux API深入原理理解
                 </a>
               
             
@@ -589,7 +760,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-05-18 22:06:04" itemprop="dateModified" datetime="2018-05-18T22:06:04+08:00">2018-05-18</time>
+                <time title="修改时间：2018-05-20 08:31:52" itemprop="dateModified" datetime="2018-05-20T08:31:52+08:00">2018-05-20</time>
               
             
           </span>
@@ -642,9 +813,9 @@
       
         
           
-            <h2 id="函数原型"><a href="#函数原型" class="headerlink" title="函数原型"></a>函数原型</h2><pre><code>key_t ftok( char * pathname, int proj_id) 
+            <h2 id="ftok-函数"><a href="#ftok-函数" class="headerlink" title="ftok()函数"></a>ftok()函数</h2><pre><code>key_t ftok( char * pathname, int proj_id) 
 </code></pre><p>pathname:就时你指定的文件名<br>proj_id是子序号<br>ket_t(4 Byte):</p>
-<h2 id="函数限制-Key-t冲突"><a href="#函数限制-Key-t冲突" class="headerlink" title="函数限制(Key_t冲突)"></a>函数限制(Key_t冲突)</h2>
+<h2 id="sleep-函数"><a href="#sleep-函数" class="headerlink" title="sleep()函数"></a>sleep()函数</h2><h2 id="sleep-函数-1"><a href="#sleep-函数-1" class="headerlink" title="sleep()函数"></a>sleep()函数</h2>
           
         
       
@@ -939,7 +1110,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-05-19 17:38:17" itemprop="dateModified" datetime="2018-05-19T17:38:17+08:00">2018-05-19</time>
+                <time title="修改时间：2018-05-19 21:29:32" itemprop="dateModified" datetime="2018-05-19T21:29:32+08:00">2018-05-19</time>
               
             
           </span>
@@ -1045,7 +1216,7 @@
 <ul>
 <li>基于锁的并发控制，Lock-Based Concurrency Control<br><a href="https://blog.csdn.net/whoamiyang/article/details/51901888" target="_blank" rel="noopener">参考资料1</a><br><a href="https://www.cnblogs.com/chenpingzhao/p/5065316.html" target="_blank" rel="noopener">参考资料2</a></li>
 </ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>1.列式存储</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>1.列式存储<br>事务型数据库(OLTP,On-Line Transaction Processing):行式存储<br>分析型数据库(OLAP,On-line Analytical Processing):列式存储</p>
 <p><a href="http://dbaplus.cn/news-159-2032-1.html" target="_blank" rel="noopener">参考资料</a></p>
 
           
@@ -1655,7 +1826,7 @@ f(p);
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1680,7 +1851,9 @@ f(p);
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1701,7 +1874,9 @@ f(p);
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

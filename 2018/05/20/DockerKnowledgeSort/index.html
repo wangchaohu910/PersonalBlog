@@ -109,24 +109,25 @@
 
 
 
-  <meta name="description" content="Ordinary but not simple">
-<meta name="keywords" content="chwang, minideep">
-<meta property="og:type" content="website">
-<meta property="og:title" content="chwang&#39;s notes">
-<meta property="og:url" content="http://notes.minideep.com/tags/数据库/index.html">
+  <meta name="description" content="Docker 核心技术与实现原理▼Namespaces命名空间 (namespaces) 是 Linux 为我们提供的用于分离进程树、网络接口、挂载点以及进程间通信等资源的方法。 ▼网络Docker为我们提供了四种不同的网络模式，Host、Container、None 和 Bridge 模式。网桥模式。在这种模式下，除了分配隔离的网络命名空间之外，Docker 还会为所有的容器设置 IP 地址。当">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker相关知识点梳理">
+<meta property="og:url" content="http://notes.minideep.com/2018/05/20/DockerKnowledgeSort/index.html">
 <meta property="og:site_name" content="chwang&#39;s notes">
-<meta property="og:description" content="Ordinary but not simple">
+<meta property="og:description" content="Docker 核心技术与实现原理▼Namespaces命名空间 (namespaces) 是 Linux 为我们提供的用于分离进程树、网络接口、挂载点以及进程间通信等资源的方法。 ▼网络Docker为我们提供了四种不同的网络模式，Host、Container、None 和 Bridge 模式。网桥模式。在这种模式下，除了分配隔离的网络命名空间之外，Docker 还会为所有的容器设置 IP 地址。当">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-20T03:02:21.141Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chwang&#39;s notes">
-<meta name="twitter:description" content="Ordinary but not simple">
+<meta name="twitter:title" content="Docker相关知识点梳理">
+<meta name="twitter:description" content="Docker 核心技术与实现原理▼Namespaces命名空间 (namespaces) 是 Linux 为我们提供的用于分离进程树、网络接口、挂载点以及进程间通信等资源的方法。 ▼网络Docker为我们提供了四种不同的网络模式，Host、Container、None 和 Bridge 模式。网桥模式。在这种模式下，除了分配隔离的网络命名空间之外，Docker 还会为所有的容器设置 IP 地址。当">
 
 
 
 
 
 
-  <link rel="canonical" href="http://notes.minideep.com/tags/数据库/"/>
+  <link rel="canonical" href="http://notes.minideep.com/2018/05/20/DockerKnowledgeSort/"/>
 
 
 
@@ -136,7 +137,7 @@
   };
 </script>
 
-  <title>标签: 数据库 | chwang's notes</title>
+  <title>Docker相关知识点梳理 | chwang's notes</title>
   
 
 
@@ -183,7 +184,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,7 +240,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">5</span></a>
   </li>
@@ -327,87 +328,210 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>数据库<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://notes.minideep.com/2018/05/20/DockerKnowledgeSort/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chwang's notes">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/05/05/CppDataBaseKnowledgeSort/" itemprop="url">
-              
-                <span itemprop="name">数据库相关知识梳理(面试)</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">Docker相关知识点梳理
+              
+            
+          </h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-05T09:16:00+08:00"
-              content="2018-05-05" >
-          05-05
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
+              
+                
+              
+
+              <time title="创建时间：2018-05-20 21:58:00 / 修改时间：11:02:21" itemprop="dateCreated datePublished" datetime="2018-05-20T21:58:00+08:00">2018-05-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Docker-核心技术与实现原理"><a href="#Docker-核心技术与实现原理" class="headerlink" title="Docker 核心技术与实现原理"></a>Docker 核心技术与实现原理</h2><p><strong>▼Namespaces</strong><br>命名空间 (namespaces) 是 Linux 为我们提供的用于分离进程树、网络接口、挂载点以及进程间通信等资源的方法。</p>
+<p><strong>▼网络</strong><br>Docker为我们提供了四种不同的网络模式，Host、Container、None 和 Bridge 模式。<br>网桥模式。在这种模式下，除了分配隔离的网络命名空间之外，Docker 还会为所有的容器设置 IP 地址。当 Docker 服务器在主机上启动之后会创建新的虚拟网桥 docker0，随后在该主机上启动的全部服务在默认情况下都与该网桥相连。<br>Docker通过Linux的命名空间实现了网络的隔离，又通过iptables进行数据包转发，让Docker容器能够优雅地为宿主机器或者其他容器提供服务。<br>整个网络部分的功能都是通过Docker拆分出来的libnetwork实现的，它提供了一个连接不同容器的实现，同时也能够为应用给出一个能够提供一致的编程接口和网络层抽象的容器网络模型。</p>
+<p><strong>▼挂载点</strong><br>如果一个容器需要启动，那么它一定需要提供一个根文件系统（rootfs），容器需要使用这个文件系统来创建一个新的进程，所有二进制的执行都必须在这个根文件系统中。<br>chroot:更改root目录,优点:</p>
+<blockquote>
+<p>1.增加了系统的安全性，限制了用户的权力<br>在经过chroot之后，在新根下将访问不到旧系统的根目录结构和文件，这样就增强了系统的安全性。这个一般是在登录 (login) 前使用 chroot，以此达到用户不能访问一些特定的文件<br>2.建立一个与原系统隔离的系统目录结构，方便用户的开发；<br>使用chroot后，系统读取的是新根下的目录和文件，这是一个与原系统根下文件不相关的目录结构。在这个新的环境中，可以用来测试软件的静态编译以及一些与系统不相关的独立开发。<br>3.切换系统的根目录位置，引导Linux系统启动以及急救系统等。<br>chroot 的作用就是切换系统的根位置，而这个作用最为明显的是在系统初始引导磁盘的处理过程中使用，从初始 RAM 磁盘 (initrd) 切换系统的根位置并执行真正的 init。另外，当系统出现一些问题时，我们也可以使用 chroot 来切换到一个临时的系统。</p>
+</blockquote>
+<p><strong>▼CGroups</strong></p>
+<blockquote>
+<p>Control Groups（简称 CGroups）就是能够隔离宿主机器上的物理资源，例如 CPU、内存、磁盘 I/O 和网络带宽。<br>CGroup 是将任意进程进行分组化管理的Linux内核功能。CGroup本身是提供将进程进行分组化管理的功能和接口的基础结构，I/O 或内存的分配控制等具体的资源管理功能是通过这个功能来实现的。这些具体的资源管理功能称为 CGroup 子系统或控制器。CGroup 子系统有控制内存的 Memory 控制器、控制进程调度的 CPU 控制器等。运行中的内核可以使用的 Cgroup 子系统由/proc/cgroup 来确认。<br>CGroup 提供了一个 CGroup 虚拟文件系统，作为进行分组管理和各子系统设置的用户接口。要使用 CGroup，必须挂载 CGroup 文件系统。这时通过挂载选项指定使用哪个子系统<br><a href="https://www.ibm.com/developerworks/cn/linux/1506_cgroup/index.html" target="_blank" rel="noopener">参考资料</a></p>
+</blockquote>
+<p><strong>▼UnionFS</strong><br>Docker 镜像其实本质就是一个压缩包</p>
+<p><strong>▼存储驱动</strong><br>容器和镜像的区别就在于，所有的镜像都是只读的，而每一个容器其实等于镜像加上一个可读写的层，也就是同一个镜像可以对应多个容器。</p>
+<p><strong>▼AUFS</strong><br>UnionFS 其实是一种为 Linux 操作系统设计的用于把多个文件系统『联合』到同一个挂载点的文件系统服务。而 AUFS 即 Advanced UnionFS 其实就是 UnionFS 的升级版，它能够提供更优秀的性能和效率。</p>
+<p><a href="https://draveness.me/docker" target="_blank" rel="noopener">参考资料</a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2>
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/19/LinuxShellCommadSort/" rel="next" title="Shell命令实现原理理解">
+                <i class="fa fa-chevron-left"></i> Shell命令实现原理理解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -428,8 +552,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -538,6 +671,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-核心技术与实现原理"><span class="nav-number">1.</span> <span class="nav-text">Docker 核心技术与实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.</span> <span class="nav-text">其他</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -690,6 +839,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
 
   
 
@@ -1089,7 +1242,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script type="text/javascript">
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 
