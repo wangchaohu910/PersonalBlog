@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="chwang&#39;s notes">
 <meta property="og:description" content="ftok()函数ftok获取的键值是由ftok()函数的第二个参数的后8个bit，st_dev的后两位，st_ino的后四位构成的。容易造成Key重复的问题。 参考资料 usleep()函数精度1.Linux内核时钟中断概念:xtime/HZ/jiffies/RTC2.函数-sleep,精度秒,注册一个信号SIGALRM,接收内核给出的一个信号。-usleep,精度为微妙，但实际并不能精确到微妙.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-20T10:47:36.598Z">
+<meta property="og:updated_time" content="2018-06-03T08:39:26.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux API深入原理理解">
 <meta name="twitter:description" content="ftok()函数ftok获取的键值是由ftok()函数的第二个参数的后8个bit，st_dev的后两位，st_ino的后四位构成的。容易造成Key重复的问题。 参考资料 usleep()函数精度1.Linux内核时钟中断概念:xtime/HZ/jiffies/RTC2.函数-sleep,精度秒,注册一个信号SIGALRM,接收内核给出的一个信号。-usleep,精度为微妙，但实际并不能精确到微妙.">
@@ -258,7 +258,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">11</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">12</span></a>
   </li>
         
         
@@ -409,7 +409,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-05-20 18:47:36" itemprop="dateModified" datetime="2018-05-20T18:47:36+08:00">2018-05-20</time>
+                <time title="修改时间：2018-06-03 16:39:26" itemprop="dateModified" datetime="2018-06-03T16:39:26+08:00">2018-06-03</time>
               
             
           </span>
@@ -468,6 +468,9 @@
 <p>因为localtime并不是线程安全的，观察localtime和localtime_r的调用发现，localtime在使用时，我们只需定义一个指针，并不需要为指针申请空间，而指针必须要指向内存空间才可以使用，其实申请空间的动作由函数自己完成，这样在多线程的情况下，如果有另一个线程调用了这个函数，那么指针指向的struct tm结构体的数据就会改变。</p>
 </blockquote>
 <p><a href="https://blog.csdn.net/u010087712/article/details/50731222" target="_blank" rel="noopener">参考资料</a></p>
+<h2 id="exit-和-exit-的区别"><a href="#exit-和-exit-的区别" class="headerlink" title="exit()和_exit()的区别"></a>exit()和_exit()的区别</h2><blockquote>
+<p>1._exit()执行后会立即返回给内核，而exit()要先执行一些清除操作，然后将控制权交给内核。<br>2.调用_exit()函数时，其会关闭进程所有的文件描述符，清理内存，以及其他一些内核清理函数，但不会刷新流（stdin 、stdout、stderr……）。exit()函数是在_exit()函数上的一个封装，它会调用_exit，并在调用之前先刷新流。<br>3.exit()函数与_exit()函数最大的区别就在于，exit()函数在调用exit系统之前要检查文件的打开情况，把文件缓冲区的内容写回文件。<br>注：由于Linux的标准函数库中，有一种操作称作“缓冲I/O”的操作，其特征就是对应每一个打开的文件，在内存中都有一片缓冲区。在每次读文件时，会连续地读出若干条记录，这样在下次读文件时就可以直接从内存的缓冲区读取；同样，在每次写文件时也仅仅是写入内存的缓冲区，等满足了一定的条件（如达到了一定数量或遇到特定字符等），再将缓冲区中的内容的内容一次性写入文件。这种技术大大提高了文件读写的速度，但也给编程带来了一点麻烦。例如，有一些数据，认为已经写入了文件，实际上因为没有满足特定的条件，它们只是保存在缓冲区内，这时用_exit()函数直接将进程关闭，缓冲区的数据将丢失。因此，要想保证数据的完整性，就一定要使用exit()函数</p>
+</blockquote>
 
       
     </div>
@@ -591,7 +594,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -703,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ftok-函数"><span class="nav-number">1.</span> <span class="nav-text">ftok()函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#usleep-函数精度"><span class="nav-number">2.</span> <span class="nav-text">usleep()函数精度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#localtime函数-非线程安全"><span class="nav-number">3.</span> <span class="nav-text">localtime函数(非线程安全)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ftok-函数"><span class="nav-number">1.</span> <span class="nav-text">ftok()函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#usleep-函数精度"><span class="nav-number">2.</span> <span class="nav-text">usleep()函数精度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#localtime函数-非线程安全"><span class="nav-number">3.</span> <span class="nav-text">localtime函数(非线程安全)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exit-和-exit-的区别"><span class="nav-number">4.</span> <span class="nav-text">exit()和_exit()的区别</span></a></li></ol></div>
             
 
           </div>

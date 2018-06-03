@@ -109,18 +109,18 @@
 
 
 
-  <meta name="description" content="进程▼孤儿进程与僵尸进程  •常规意义cache:高速缓存,是位于CPU与主内存间的一种容量较小但速度很高的存储器•常规意义buffer:缓冲区,一个用于存储速度不同步的设备或优先级不同的设备之间传输数据的区域•free命令buffer:块设备的读写缓冲区,它只记录文件系统的元数据（metadata）,用来缓存磁盘数据(物理层:物理磁角度)•free命令cache:作为page cache的内存,">
+  <meta name="description" content="进程▼孤儿进程与僵尸进程  •孤儿进程：一个父进程退出，而它的一个或多个子进程还在运行，那么那些子进程将成为孤儿进程。孤儿进程将被init进程(进程号为1)所收养，并由init进程对它们完成状态收集工作。•僵尸进程：一个进程使用fork创建子进程，如果子进程退出，而父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中。这种进程称之为僵死进程。  ▼惊">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux基础知识整理">
 <meta property="og:url" content="http://notes.minideep.com/2018/06/03/LinuxBaseInfoSort/index.html">
 <meta property="og:site_name" content="chwang&#39;s notes">
-<meta property="og:description" content="进程▼孤儿进程与僵尸进程  •常规意义cache:高速缓存,是位于CPU与主内存间的一种容量较小但速度很高的存储器•常规意义buffer:缓冲区,一个用于存储速度不同步的设备或优先级不同的设备之间传输数据的区域•free命令buffer:块设备的读写缓冲区,它只记录文件系统的元数据（metadata）,用来缓存磁盘数据(物理层:物理磁角度)•free命令cache:作为page cache的内存,">
+<meta property="og:description" content="进程▼孤儿进程与僵尸进程  •孤儿进程：一个父进程退出，而它的一个或多个子进程还在运行，那么那些子进程将成为孤儿进程。孤儿进程将被init进程(进程号为1)所收养，并由init进程对它们完成状态收集工作。•僵尸进程：一个进程使用fork创建子进程，如果子进程退出，而父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中。这种进程称之为僵死进程。  ▼惊">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-03T04:13:14.606Z">
+<meta property="og:updated_time" content="2018-06-03T09:21:31.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux基础知识整理">
-<meta name="twitter:description" content="进程▼孤儿进程与僵尸进程  •常规意义cache:高速缓存,是位于CPU与主内存间的一种容量较小但速度很高的存储器•常规意义buffer:缓冲区,一个用于存储速度不同步的设备或优先级不同的设备之间传输数据的区域•free命令buffer:块设备的读写缓冲区,它只记录文件系统的元数据（metadata）,用来缓存磁盘数据(物理层:物理磁角度)•free命令cache:作为page cache的内存,">
+<meta name="twitter:description" content="进程▼孤儿进程与僵尸进程  •孤儿进程：一个父进程退出，而它的一个或多个子进程还在运行，那么那些子进程将成为孤儿进程。孤儿进程将被init进程(进程号为1)所收养，并由init进程对它们完成状态收集工作。•僵尸进程：一个进程使用fork创建子进程，如果子进程退出，而父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中。这种进程称之为僵死进程。  ▼惊">
 
 
 
@@ -258,7 +258,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">11</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">12</span></a>
   </li>
         
         
@@ -392,7 +392,7 @@
                 
               
 
-              <time title="创建时间：2018-06-03 11:54:00 / 修改时间：12:13:14" itemprop="dateCreated datePublished" datetime="2018-06-03T11:54:00+08:00">2018-06-03</time>
+              <time title="创建时间：2018-06-03 11:54:00 / 修改时间：17:21:31" itemprop="dateCreated datePublished" datetime="2018-06-03T11:54:00+08:00">2018-06-03</time>
             
 
             
@@ -450,9 +450,12 @@
       
         <h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p><strong>▼孤儿进程与僵尸进程</strong></p>
 <blockquote>
-<p>•常规意义cache:高速缓存,是位于CPU与主内存间的一种容量较小但速度很高的存储器<br>•常规意义buffer:缓冲区,一个用于存储速度不同步的设备或优先级不同的设备之间传输数据的区域<br>•free命令buffer:块设备的读写缓冲区,它只记录文件系统的元数据（metadata）,用来缓存磁盘数据(物理层:物理磁角度)<br>•free命令cache:作为page cache的内存,文件系统的cache ,用来缓存文件数据(逻辑层:文件系统层面)</p>
+<p>•孤儿进程：一个父进程退出，而它的一个或多个子进程还在运行，那么那些子进程将成为孤儿进程。孤儿进程将被init进程(进程号为1)所收养，并由init进程对它们完成状态收集工作。<br>•僵尸进程：一个进程使用fork创建子进程，如果子进程退出，而父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中。这种进程称之为僵死进程。</p>
 </blockquote>
-<p><strong>▼孤儿进程与僵尸进程</strong><br>•waitpid/wait<br>SIGCHLD</p>
+<p><strong>▼惊群现象</strong><br><strong>惊群现象</strong><br>惊群现象（thundering herd）就是当多个进程和线程在同时阻塞等待同一个事件时，如果这个事件发生，会唤醒所有的进程，但最终只可能有一个进程/线程对该事件进行处理，其他进程/线程会在失败后重新休眠，这种性能浪费就是惊群</p>
+<p><strong>背景知识</strong><br>在Linux2.6版本以后，内核内核已经解决了accept()函数的“惊群”问题，大概的处理方式就是，当内核接收到一个客户连接后，只会唤醒等待队列上的第一个进程或线程。所以，如果服务器采用accept阻塞调用方式，在最新的Linux系统上，已经没有“惊群”的问题了。</p>
+<p><strong>解决惊群问题</strong><br>Nginx中使用mutex互斥锁解决这个问题，具体措施有使用全局互斥锁，每个子进程在epoll_wait()之前先去申请锁，申请到则继续处理，获取不到则等待，并设置了一个负载均衡的算法（当某一个子进程的任务量达到总设置量的7/8时，则不会再尝试去申请锁）来均衡各个进程的任务量</p>
+<p><a href="http://www.cnblogs.com/Anker/p/7071849.html#3984353" target="_blank" rel="noopener"><font color="#0000FF">惊群现象</font></a></p>
 
       
     </div>
@@ -495,6 +498,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/03/RedisBaseInfoSort/" rel="prev" title="Redis相关知识整理">
+                Redis相关知识整理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -572,7 +579,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
