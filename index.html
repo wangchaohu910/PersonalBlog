@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-10 15:27:12" itemprop="dateModified" datetime="2018-06-10T15:27:12+08:00">2018-06-10</time>
+                <time title="修改时间：2018-06-10 18:36:45" itemprop="dateModified" datetime="2018-06-10T18:36:45+08:00">2018-06-10</time>
               
             
           </span>
@@ -483,7 +483,7 @@
 <p><strong>▼最少链接</strong><br>将请求分配到连接数最少的服务器(目前处理请求最少的服务器)。<br>•优点：根据服务器当前的请求处理情况，动态分配；<br>•缺点：算法实现相对复杂，需要监控服务器请求连接数；</p>
 <p><strong>▼Hash(源地址散列)</strong><br>根据IP地址进行Hash计算，得到IP地址。<br>•优点：将来自同一IP地址的请求，同一会话期内，转发到相同的服务器；实现会话粘滞。<br>•缺点：目标服务器宕机后，会话会丢失</p>
 <p><strong>▼加权</strong><br>在轮询，随机，最少链接，Hash’等算法的基础上，通过加权的方式，进行负载服务器分配。<br>•优点：根据权重，调节转发服务器的请求数目；<br>•缺点：使用相对复杂</p>
-<h2 id="负载均衡应用"><a href="#负载均衡应用" class="headerlink" title="负载均衡应用**"></a>负载均衡应用**</h2><p><strong>▼nginx</strong><br>&emsp;&emsp;nginx的负载均衡策略可以划分为两大类：内置策略和扩展策略。内置策略包含加权轮询和ip hash，在默认情况下这两种策略会编译进nginx内核，只需在nginx配置中指明参数即可。扩展策略有很多，如fair、通用hash、consistent hash等，默认不编译进nginx内核</p>
+<h2 id="负载均衡应用"><a href="#负载均衡应用" class="headerlink" title="负载均衡应用"></a>负载均衡应用</h2><p><strong>▼nginx</strong><br>&emsp;&emsp;nginx的负载均衡策略可以划分为两大类：内置策略和扩展策略。内置策略包含加权轮询和ip hash，在默认情况下这两种策略会编译进nginx内核，只需在nginx配置中指明参数即可。扩展策略有很多，如fair、通用hash、consistent hash等，默认不编译进nginx内核</p>
 <p><strong>算法:加权轮询</strong><br>&emsp;&emsp;第一，如果可以把加权轮询算法分为先深搜索和先广搜索，那么nginx采用的是先深搜索算法，即将首先将请求都分给高权重的机器，直到该机器的权值降到了比其他机器低，才开始将请求分给下一个高权重的机器；<br>&emsp;&emsp;第二，当所有后端机器都down掉时，nginx会立即将所有机器的标志位清成初始状态，以避免造成所有的机器都处在timeout的状态，从而导致整个前端被夯住。</p>
 <p><strong>算法:ip hash</strong><br>&emsp;&emsp;ip hash是nginx内置的另一个负载均衡的策略，流程和轮询很类似，只是其中的算法和具体的策略有些变化</p>
 <p><strong>算法:fair</strong><br>&emsp;&emsp;fair策略是扩展策略，默认不被编译进nginx内核。其原理是根据后端服务器的响应时间判断负载情况，从中选出负载最轻的机器进行分流。这种策略具有很强的自适应性，但是实际的网络环境往往不是那么简单，因此要慎用。</p>
