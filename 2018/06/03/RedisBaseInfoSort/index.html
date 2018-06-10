@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="chwang&#39;s notes">
 <meta property="og:description" content="Redis持久化▼Redis持久化方法对比分析•RDB持久化：原理是将Reids在内存中的数据库记录定时dump到磁盘上的RDB持久化。•AOF持久化：原理是将Reids的操作日志以追加的方式写入文件。 Redis持久化方法对比分析 ▼其他Redis(Remote Dictionary Server(远程数据服务))是单进程单线程的redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-10T02:48:58.659Z">
+<meta property="og:updated_time" content="2018-06-10T09:58:05.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis相关知识整理">
 <meta name="twitter:description" content="Redis持久化▼Redis持久化方法对比分析•RDB持久化：原理是将Reids在内存中的数据库记录定时dump到磁盘上的RDB持久化。•AOF持久化：原理是将Reids的操作日志以追加的方式写入文件。 Redis持久化方法对比分析 ▼其他Redis(Remote Dictionary Server(远程数据服务))是单进程单线程的redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行">
@@ -409,7 +409,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-10 10:48:58" itemprop="dateModified" datetime="2018-06-10T10:48:58+08:00">2018-06-10</time>
+                <time title="修改时间：2018-06-10 17:58:05" itemprop="dateModified" datetime="2018-06-10T17:58:05+08:00">2018-06-10</time>
               
             
           </span>
@@ -463,13 +463,21 @@
         <h2 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h2><p><strong>▼Redis持久化方法对比分析</strong><br>•RDB持久化：原理是将Reids在内存中的数据库记录定时dump到磁盘上的RDB持久化。<br>•AOF持久化：原理是将Reids的操作日志以追加的方式写入文件。</p>
 <p><a href="http://www.cnblogs.com/Anker/p/6099705.html" target="_blank" rel="noopener"><font color="#0000FF">Redis持久化方法对比分析</font></a></p>
 <p><strong>▼其他</strong><br>Redis(Remote Dictionary Server(远程数据服务))是单进程单线程的<br>redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行控制的开销</p>
-<h2 id="Redis面试"><a href="#Redis面试" class="headerlink" title="Redis面试"></a>Redis面试</h2><p><strong>使用Redis有哪些好处</strong><br>(1) 速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)<br>(2) 支持丰富数据类型，支持string，list，set，sorted set，hash<br>(3) 支持事务，操作都是原子性，所谓的原子性就是对数据的更改要么全部执行，要么全部不执行<br>(4) 丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
-<p><strong>redis相比memcached有哪些优势</strong><br>(1) memcached所有的值均是简单的字符串，redis作为其替代者，支持更为丰富的数据类型<br>(2) redis的速度比memcached快很多<br>(3) redis可以持久化其数据</p>
-<p><strong>Memcache与Redis的区别都有哪些</strong><br>(1)存储方式<br>Memecache把数据全部存在内存之中，断电后会挂掉，数据不能超过内存大小。<br>Redis有部份存在硬盘上，这样能保证数据的持久性。</p>
-<p>(2)数据支持类型<br>Memcache对数据类型支持相对简单。<br>Redis有复杂的数据类型。</p>
-<p>(3)使用底层模型不同<br>它们之间底层实现方式 以及与客户端之间通信的应用协议不一样。<br>Redis直接自己构建了VM 机制 ，因为一般的系统调用系统函数的话，会浪费一定的时间去移动和请求。</p>
-<p>(4)value大小<br>redis最大可以达到1GB，而memcache只有1MB<br><a href="https://www.cnblogs.com/jiahaoJAVA/p/6244278.html" target="_blank" rel="noopener"><font color="#0000FF">redis面试总结</font></a></p>
-<p>**redis 最适合的场景<br>•会话缓存（Session Cache）<br>•全页缓存（FPC）<br>•队列(消息队列)<br>•排行榜/计数器<br>•发布/订阅</p>
+<h2 id="Redis面试"><a href="#Redis面试" class="headerlink" title="Redis面试"></a>Redis面试</h2><p><strong>▼使用Redis有哪些好处</strong><br>•速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)<br>•支持丰富数据类型，支持string，list，set，sorted set，hash<br>•支持事务，操作都是原子性，所谓的原子性就是对数据的更改要么全部执行，要么全部不执行<br>•丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
+<p><strong>▼使用redis有什么缺点</strong><br>•缓存和数据库双写一致性问题<br>•缓存雪崩问题<br>•缓存击穿问题<br>•缓存的并发竞争问题</p>
+<p><strong>▼redis相比memcached有哪些优势</strong><br>•memcached所有的值均是简单的字符串，redis作为其替代者，支持更为丰富的数据类型<br>•redis的速度比memcached快很多<br>•redis可以持久化其数据</p>
+<p><strong>▼Memcache与Redis的区别都有哪些</strong><br>•存储方式<br>Memecache把数据全部存在内存之中，断电后会挂掉，数据不能超过内存大小。<br>Redis有部份存在硬盘上，这样能保证数据的持久性。</p>
+<p>•数据支持类型<br>Memcache对数据类型支持相对简单。<br>Redis有复杂的数据类型。</p>
+<p>•使用底层模型不同<br>它们之间底层实现方式 以及与客户端之间通信的应用协议不一样。<br>Redis直接自己构建了VM 机制 ，因为一般的系统调用系统函数的话，会浪费一定的时间去移动和请求。</p>
+<p>•value大小<br>redis最大可以达到1GB，而memcache只有1MB<br><a href="https://www.cnblogs.com/jiahaoJAVA/p/6244278.html" target="_blank" rel="noopener"><font color="#0000FF">redis面试总结</font></a></p>
+<p><strong>▼redis 最适合的场景</strong><br>•会话缓存（Session Cache）<br>•全页缓存（FPC）<br>•队列(消息队列)<br>•排行榜/计数器<br>•发布/订阅</p>
+<p><strong>▼单线程的redis为什么这么快</strong><br>•纯内存操作<br>•单线程操作,避免了频繁的上下文切换<br>•采用了非阻塞I/O多路复用机制</p>
+<p><strong>▼如何应对缓存穿透和缓存雪崩问题</strong><br><strong>缓存穿透</strong><br>即黑客故意去请求缓存中不存在的数据，导致所有的请求都怼到数据库上，从而数据库连接异常。</p>
+<p><strong>解决方案</strong><br>•利用互斥锁，缓存失效的时候，先去获得锁，得到锁了，再去请求数据库。没得到锁，则休眠一段时间重试<br>•采用异步更新策略，无论key是否取到值，都直接返回。value值中维护一个缓存失效时间，缓存如果过期，异步起一个线程去读数据库，更新缓存。需要做缓存预热(项目启动前，先加载缓存)操作。<br>•提供一个能迅速判断请求是否有效的拦截机制，比如，利用布隆过滤器，内部维护一系列合法有效的key。迅速判断出，请求所携带的Key是否合法有效。如果不合法，则直接返回</p>
+<p><strong>缓存雪崩</strong><br>即缓存同一时间大面积的失效，这个时候又来了一波请求，结果请求都怼到数据库上，从而导致数据库连接异常。</p>
+<p><strong>解决方案</strong><br>•给缓存的失效时间，加上一个随机值，避免集体失效。<br>•使用互斥锁，但是该方案吞吐量明显下降了。<br>•双缓存。我们有两个缓存，缓存A和缓存B。缓存A的失效时间为20分钟，缓存B不设失效时间。自己做缓存预热操作。然后细分以下几个小点<br>1.从缓存A读数据库，有则直接返回<br>2.A没有数据，直接从B读数据，直接返回，并且异步启动一个更新线程。<br>3.更新线程同时更新缓存A和缓存B。</p>
+<p><strong>▼如何解决redis的并发竞争key问题</strong><br>•如果对这个key操作，不要求顺序<br>这种情况下，准备一个分布式锁，大家去抢锁，抢到锁就做set操作即可，比较简单。<br>•如果对这个key操作，要求顺序<br>假设有一个key1,系统A需要将key1设置为valueA,系统B需要将key1设置为valueB,系统C需要将key1设置为valueC.<br>期望按照key1的value值按照 valueA–&gt;valueB–&gt;valueC的顺序变化。这种时候我们在数据写入数据库的时候，需要保存一个时间戳。</p>
+<p><a href="https://www.cnblogs.com/rjzheng/p/9096228.html" target="_blank" rel="noopener"><font color="#0000FF">分布式之redis复习精讲</font></a></p>
 
       
     </div>
