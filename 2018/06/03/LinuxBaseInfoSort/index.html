@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="chwang&#39;s notes">
 <meta property="og:description" content="进程▼孤儿进程与僵尸进程  •孤儿进程：一个父进程退出，而它的一个或多个子进程还在运行，那么那些子进程将成为孤儿进程。孤儿进程将被init进程(进程号为1)所收养，并由init进程对它们完成状态收集工作。•僵尸进程：一个进程使用fork创建子进程，如果子进程退出，而父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中。这种进程称之为僵死进程。  ▼惊">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-03T09:21:31.737Z">
+<meta property="og:updated_time" content="2018-06-10T00:49:52.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux基础知识整理">
 <meta name="twitter:description" content="进程▼孤儿进程与僵尸进程  •孤儿进程：一个父进程退出，而它的一个或多个子进程还在运行，那么那些子进程将成为孤儿进程。孤儿进程将被init进程(进程号为1)所收养，并由init进程对它们完成状态收集工作。•僵尸进程：一个进程使用fork创建子进程，如果子进程退出，而父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中。这种进程称之为僵死进程。  ▼惊">
@@ -392,12 +392,24 @@
                 
               
 
-              <time title="创建时间：2018-06-03 11:54:00 / 修改时间：17:21:31" itemprop="dateCreated datePublished" datetime="2018-06-03T11:54:00+08:00">2018-06-03</time>
+              <time title="创建时间：2018-06-03 11:54:00" itemprop="dateCreated datePublished" datetime="2018-06-03T11:54:00+08:00">2018-06-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-10 08:49:52" itemprop="dateModified" datetime="2018-06-10T08:49:52+08:00">2018-06-10</time>
               
             
           </span>
@@ -456,6 +468,11 @@
 <p><strong>背景知识</strong><br>在Linux2.6版本以后，内核内核已经解决了accept()函数的“惊群”问题，大概的处理方式就是，当内核接收到一个客户连接后，只会唤醒等待队列上的第一个进程或线程。所以，如果服务器采用accept阻塞调用方式，在最新的Linux系统上，已经没有“惊群”的问题了。</p>
 <p><strong>解决惊群问题</strong><br>Nginx中使用mutex互斥锁解决这个问题，具体措施有使用全局互斥锁，每个子进程在epoll_wait()之前先去申请锁，申请到则继续处理，获取不到则等待，并设置了一个负载均衡的算法（当某一个子进程的任务量达到总设置量的7/8时，则不会再尝试去申请锁）来均衡各个进程的任务量</p>
 <p><a href="http://www.cnblogs.com/Anker/p/7071849.html#3984353" target="_blank" rel="noopener"><font color="#0000FF">惊群现象</font></a></p>
+<h2 id="I-O"><a href="#I-O" class="headerlink" title="I/O"></a>I/O</h2><p><strong>▼零拷贝技术</strong><br>零拷贝主要的任务就是避免CPU将数据从一块存储拷贝到另外一块存储，主要就是利用各种零拷贝技术，避免让CPU做大量的数据拷贝任务，减少不必要的拷贝，或者让别的组件来做这一类简单的数据传输任务，让CPU解脱出来专注于别的任务。这样就可以让系统资源的利用更加有效。</p>
+<p><strong>sendfile机制</strong><br>sendfile系统调用利用DMA引擎将文件内容拷贝到内核缓冲区去，然后将带有文件位置和长度信息的缓冲区描述符添加socket缓冲区去，这一步不会将内核中的数据拷贝到socket缓冲区中，DMA引擎会将内核缓冲区的数据拷贝到协议引擎中去，避免了最后一次拷贝<br><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-zerocopy2/index.html" target="_blank" rel="noopener"><font color="#0000FF">Linux 中的零拷贝技术</font></a></p>
+<p><strong>splice机制</strong><br>splice调用在两个文件描述符之间移动数据，而不需要数据在内核空间和用户空间来回拷贝。他从fd_in拷贝len长度的数据到fd_out，但是有一方必须是管道设备，这也是目前splice的一些局限性</p>
+<p><strong>tee机制</strong><br>在两个管道文件描述符之间复制数据，同是零拷贝。但它不消耗数据，数据被操作之后，仍然可以用于后续操作。</p>
+<p><a href="https://www.jianshu.com/p/fad3339e3448" target="_blank" rel="noopener"><font color="#0000FF">浅析Linux中的零拷贝技术</font></a></p>
 
       
     </div>
@@ -645,7 +662,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -695,7 +712,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O"><span class="nav-number">2.</span> <span class="nav-text">I/O</span></a></li></ol></div>
             
 
           </div>
