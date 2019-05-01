@@ -258,7 +258,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">15</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">16</span></a>
   </li>
         
         
@@ -332,6 +332,184 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://notes.minideep.com/2018/05/19/LinuxShellCommadSort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chwang's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/19/LinuxShellCommadSort/" itemprop="url">
+                  Shell命令实现原理理解
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-19 16:10:00 / 修改时间：22:02:42" itemprop="dateCreated datePublished" datetime="2018-05-19T16:10:00+08:00">2018-05-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="free命令原理"><a href="#free命令原理" class="headerlink" title="free命令原理"></a>free命令原理</h2><p><strong>▼Buffer/Cache区别</strong></p>
+<blockquote>
+<p>•常规意义cache:高速缓存,是位于CPU与主内存间的一种容量较小但速度很高的存储器<br>•常规意义buffer:缓冲区,一个用于存储速度不同步的设备或优先级不同的设备之间传输数据的区域<br>•free命令buffer:块设备的读写缓冲区,它只记录文件系统的元数据（metadata）,用来缓存磁盘数据(物理层:物理磁角度)<br>•free命令cache:作为page cache的内存,文件系统的cache ,用来缓存文件数据(逻辑层:文件系统层面)</p>
+</blockquote>
+<p><strong>▼linux和windows内存管理的区别</strong></p>
+<blockquote>
+<p>Linux优先使用物理内存，当物理内存还有空闲时，linux是不会释放内存的，即时占用内存的程序已经被关闭了（这部分内存就用来做缓存了）。也就是说，即时你有很大的内存,用过一段时间后，也会被占满。这样做的好处是，启动那些刚开启过的程序、或是读取刚存取过得数据会比较快，对于服务器很有好处。</p>
+</blockquote>
+<blockquote>
+<p>windows则总是给内存留下一定的空闲空间，即时内存有空闲也会让程序使用一些虚拟内存，这样做的好处是，启动新的程序比较快，直接分给它些空闲内存就可以了，而linux下呢？由于内存经常处于全部被使用的状态，则要先清理出一块内存，再分配给新的程序使用，因此，新程序的启动会慢一些。</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/JohnABC/p/5799781.html" target="_blank" rel="noopener">参考资料1</a><br><a href="http://www.cnblogs.com/chenpingzhao/p/5161844.html" target="_blank" rel="noopener">参考资料2</a></p>
+<h2 id="ldd-ldconfig命令原理"><a href="#ldd-ldconfig命令原理" class="headerlink" title="ldd/ldconfig命令原理"></a>ldd/ldconfig命令原理</h2><p><strong>▼ldd原理</strong><br>&emsp;&emsp;ldd不是个可执行程式，而只是个shell脚本；ldd显示可执行模块的dependency的工作原理，其实质是通过ld-linux.so（elf动态库的装载器）来实现的。ld-linux.so模块会先于executable模块程式工作，并获得控制权，因此当上述的那些环境变量被设置时，ld-linux.so选择了显示可执行模块的dependency。</p>
+<p><strong>▼ldconfig原理</strong><br>&emsp;&emsp;ldconfig是一个动态链接库管理命令，为了让动态链接库为系统所共享,还需运行动态链接库的管理命令–ldconfig。 ldconfig 命令的用途,主要是在默认搜寻目录(/lib和/usr/lib)以及动态库配置文件/etc/ld.so.conf内所列的目录下,搜索出可共享的动态 链接库(格式如前介绍,lib<em>.so</em>),进而创建出动态装入程序(ld.so)所需的连接和缓存文件.缓存文件默认为 /etc/ld.so.cache,此文件保存已排好序的动态链接库名字列表.</p>
+<p><a href="http://www.jb51.net/article/100233.htm" target="_blank" rel="noopener">参考资料</a></p>
+<h2 id="如何手动实现tail命令"><a href="#如何手动实现tail命令" class="headerlink" title="如何手动实现tail命令"></a>如何手动实现tail命令</h2><p><strong>▼思路</strong><br>1.调用Shell脚本<br>2.开辟n行的Buffer, 存取文件最后n行的数据，并输出,间隔一段时间检查文件大小是否有变化，有则输出新追加的内容。</p>
+<pre><code>FILE *fd=popen(&quot;tail -f -n +1 stat.log&quot;,&quot;r&quot;);
+</code></pre><p><a href="https://www.cnblogs.com/welkinwalker/archive/2011/06/23/2088403.html" target="_blank" rel="noopener">参考资料</a></p>
+<p><strong>▼system()和popen()区别</strong><br>&emsp;&emsp;1.system和popen都是执行了类似的运行流程，大致是fork-&gt;execl-&gt;return。但是我们看到system在执行期间调用进程会一直等待shell命令执行完成(waitpid等待子进程结束)才返回，但是popen无须等待shell命令执行完成就返回了。我们可以理解system为串行执行，在执行期间调用进程放弃了”控制权”，popen为并行执行。popen中的子进程没人给它”收尸”了啊？是的，如果你没有在调用popen后调用pclose那么这个子进程就可能变成”僵尸”。<br>&emsp;&emsp;2.system中对SIGCHLD、SIGINT、SIGQUIT都做了处理，但是在popen中没有对信号做任何的处理。<br>&emsp;&emsp;3.system就是执行shell命令最后返回是否执行成功，popen执行命令并且通过管道和shell命令进行通信<br>&emsp;&emsp;4.system函数是C89和C99中标准定义的，可以跨平台使用。而popen是Posix 标准函数，可能在某些平台无法使用。</p>
+<p><a href="https://blog.csdn.net/u013485792/article/details/51422954" target="_blank" rel="noopener">参考资料</a></p>
+<h2 id="Linux工具快速教程"><a href="#Linux工具快速教程" class="headerlink" title="Linux工具快速教程"></a>Linux工具快速教程</h2><p><a href="http://linuxtools-rst.readthedocs.io" target="_blank" rel="noopener">参考资料</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1507,7 +1685,7 @@ f(p);
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1638,7 +1816,7 @@ f(p);
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
